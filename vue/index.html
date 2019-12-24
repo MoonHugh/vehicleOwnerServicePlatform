@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+		<title>车主服务平台</title>
+		<script type="text/javascript">
+			;(function(){
+			var 
+			owidth = (screen.width<window.innerWidth) ? screen.width : window.innerWidth,
+			fontSize = owidth > 1080 ? 114 : owidth/7.5;
+			fontSize = fontSize > 32 ? fontSize : 32; 
+			document.getElementsByTagName('html')[0].style.fontSize = fontSize + 'px';
+			})()
+		</script>
+	</head>
+	<body>
+		<div id="app">
+		</div>
+		<script type="text/javascript" charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=NOWBZ-3R5WR-VE3W3-WCPQH-OMXYF-MFBUB"></script>
+		<script type="text/javascript">
+			var lat, lng;
+			citylocation = new qq.maps.CityService({
+				complete : function(result){
+					lat = result.detail.latLng.lat;
+					lng = result.detail.latLng.lng;
+					localStorage.setItem('lat', lat);
+					localStorage.setItem('lng', lng);
+				},
+				error : function () {
+					lat = localStorage.getItem('lat', lat);
+					lng = localStorage.getItem('lng', lng);
+				}
+			});
+			citylocation.searchLocalCity();
+		</script>
+	</body>
+</html>
